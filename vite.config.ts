@@ -10,7 +10,12 @@ export default defineConfig({
   tanstackStart: {
     // Redirect TanStack Start's bundled server entry to src/server.ts (our SSR error wrapper).
     // nitro/vite builds from this
-    server: { entry: "server" },
+    server: { 
+      entry: "server",
+      preset: "cloudflare-modules" // Lovable uses Workers/Modules syntax via wrangler.jsonc
+    },
   },
-  plugins: [],
+  vite: {
+    plugins: [] // 👈 Kept here explicitly to satisfy the Cloudflare installer script
+  }
 });
